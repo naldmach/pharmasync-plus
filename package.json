@@ -5,7 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+<<<<<<< HEAD
     "build": "npm run build",
+=======
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+>>>>>>> parent of 26e56ea (Fix build configuration)
     "preview": "vite preview"
   },
   "dependencies": {

@@ -1,5 +1,19 @@
 {
+<<<<<<< HEAD
     "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
     "buildCommand": "npm run build",
     "outputDirectory": "dist"
+=======
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist",
+    "installCommand": "npm install",
+    "framework": "vite",
+    "routes": [
+      {
+        "src": "/[^.]+",
+        "dest": "/",
+        "status": 200
+      }
+    ]
+>>>>>>> parent of 26e56ea (Fix build configuration)
   }
