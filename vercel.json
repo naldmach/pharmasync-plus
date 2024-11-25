@@ -1,19 +1,18 @@
 {
-<<<<<<< HEAD
-    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
-    "buildCommand": "npm run build",
-    "outputDirectory": "dist"
-=======
-    "buildCommand": "npm run build",
-    "outputDirectory": "dist",
-    "installCommand": "npm install",
-    "framework": "vite",
-    "routes": [
-      {
-        "src": "/[^.]+",
-        "dest": "/",
-        "status": 200
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
       }
-    ]
->>>>>>> parent of 26e56ea (Fix build configuration)
-  }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
