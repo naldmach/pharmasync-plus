@@ -1,14 +1,5 @@
-// src/pages/Staff.tsx
 import React, { useState } from 'react';
-import { 
-  Bell, 
-  User, 
-  Mail, 
-  Phone, 
-  Edit,
-  Trash,
-  X
-} from 'lucide-react';
+import { Bell, User, Mail, Phone, Edit, Trash, X } from 'lucide-react';
 
 type Role = 'Admin' | 'Manager' | 'Staff' | 'Pharmacist';
 type Status = 'Active' | 'Inactive';
@@ -25,7 +16,6 @@ interface StaffMember {
 }
 
 const Staff = () => {
-  // Initialize staff with correct types
   const [staff, setStaff] = useState<StaffMember[]>([
     {
       id: 1,
@@ -53,7 +43,6 @@ const Staff = () => {
   const [formData, setFormData] = useState<Partial<StaffMember>>({});
   const [showModal, setShowModal] = useState(false);
 
-  // Handle staff update with proper type checking
   const handleUpdate = (updatedStaff: StaffMember) => {
     setStaff(currentStaff => 
       currentStaff.map(member => 
@@ -62,14 +51,12 @@ const Staff = () => {
     );
   };
 
-  // Handle edit staff
   const handleEdit = (member: StaffMember) => {
     setEditingStaff(member);
     setFormData(member);
     setShowModal(true);
   };
 
-  // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -82,7 +69,6 @@ const Staff = () => {
       };
       handleUpdate(updatedStaff);
     } else {
-      // Add new staff
       const newStaff: StaffMember = {
         id: staff.length + 1,
         name: formData.name || '',
@@ -101,7 +87,6 @@ const Staff = () => {
     setFormData({});
   };
 
-  // Handle form input changes
   const handleInputChange = (key: keyof StaffMember, value: string) => {
     setFormData(prev => ({
       ...prev,
@@ -109,7 +94,6 @@ const Staff = () => {
     }));
   };
 
-  // Handle delete
   const handleDelete = (id: number) => {
     if (window.confirm('Are you sure you want to delete this staff member?')) {
       setStaff(staff.filter(member => member.id !== id));
@@ -118,13 +102,11 @@ const Staff = () => {
 
   return (
     <div className="p-6">
-      {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Staff Management</h1>
         <p className="text-gray-500">Manage staff members and their roles</p>
       </div>
 
-      {/* Add Button */}
       <div className="mb-4">
         <button
           onClick={() => setShowModal(true)}
@@ -134,7 +116,6 @@ const Staff = () => {
         </button>
       </div>
 
-      {/* Staff Table */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -180,7 +161,6 @@ const Staff = () => {
         </table>
       </div>
 
-      {/* Add/Edit Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-lg p-6 max-w-md w-full">
@@ -210,6 +190,28 @@ const Staff = () => {
               </div>
 
               <div>
+                <label className="block text-sm font-medium text-gray-700">Email</label>
+                <input
+                  type="email"
+                  value={formData.email || ''}
+                  onChange={(e) => handleInputChange('email', e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Phone</label>
+                <input
+                  type="tel"
+                  value={formData.phone || ''}
+                  onChange={(e) => handleInputChange('phone', e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                  required
+                />
+              </div>
+
+              <div>
                 <label className="block text-sm font-medium text-gray-700">Role</label>
                 <select
                   value={formData.role || ''}
@@ -225,7 +227,41 @@ const Staff = () => {
                 </select>
               </div>
 
-              {/* Add other form fields similarly */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Department</label>
+                <input
+                  type="text"
+                  value={formData.department || ''}
+                  onChange={(e) => handleInputChange('department', e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Status</label>
+                <select
+                  value={formData.status || ''}
+                  onChange={(e) => handleInputChange('status', e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                  required
+                >
+                  <option value="">Select Status</option>
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Join Date</label>
+                <input
+                  type="date"
+                  value={formData.joinDate || ''}
+                  onChange={(e) => handleInputChange('joinDate', e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                  required
+                />
+              </div>
 
               <div className="flex justify-end gap-2">
                 <button
