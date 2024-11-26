@@ -172,9 +172,9 @@ For support, email support@pharmasyncplus.com or create an issue in the reposito
 - Open source community for the amazing tools and libraries
 
 ## Contact
-- Project Link: https://github.com/your-username/pharmasync-plus
-- Developer: Your Name
-- Email: your.email@example.com
+- Project Link: https://pharmasync-plus-nald12machs-projects.vercel.app
+- Developer: Donald M.
+- Email: donald.dev@gmail.com
 
 ---
 
